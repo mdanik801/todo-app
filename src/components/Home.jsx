@@ -32,8 +32,10 @@ function Home() {
    //Create todo
    const createTodo = async (e) => {
       e.preventDefault(e);
-      if (input === "" || input === " " || input === "  " || input === "   ") {
+      //chack length
+      if ((input.trim().length !== 0) == false) {
          alert("please enter a valid todo");
+         // console.log("Input", input.trim().length !== 0);
          return;
       }
       await addDoc(collection(db, "todos"), {
