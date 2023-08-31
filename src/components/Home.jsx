@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
+import todoicon from "../assets/ticon.gif";
 import ToDo from "./ToDo";
 import { db } from "./firebase";
 import {
@@ -10,16 +11,18 @@ import {
    doc,
    addDoc,
    deleteDoc,
+   or,
 } from "firebase/firestore";
 
 const style = {
    bg: `h-screen w-screen p-4 bg-gradient-to-r from-cyan-500 to-blue-500 ...]`,
    container: `bg-slate-100 max-w-[500px] w-full m-auto rounded-md drop-shadow-md p-4 `,
-   heading: ` text-3xl font-bold text-center text-gray-800 p-2`,
+   heading: ` text-3xl font-bold text-center text-gray-800 p-2  `,
    form: `flex justify-between text-xl `,
    input: `border p-2 w-full text-xl`,
    button: `border p-4  ml-2 bg-blue-500 text-slate-100 hover:bg-cyan-500`,
    count: `text-center p-2 font-bold`,
+   icon: `rounded-lg ... border-4 border-emerald-300 hover:border-cyan-300 ...`,
 };
 
 function Home() {
@@ -29,7 +32,7 @@ function Home() {
    //Create todo
    const createTodo = async (e) => {
       e.preventDefault(e);
-      if (input === " ") {
+      if (input === "" || input === " " || input === "  " || input === "   ") {
          alert("please enter a valid todo");
          return;
       }
@@ -66,7 +69,11 @@ function Home() {
    return (
       <div className={style.bg}>
          <div className={style.container}>
-            <h3 className={style.heading}>ToDo App</h3>
+            <div className="flex justify-center mb-8 bg-transparent">
+               <img src={todoicon} alt="" className={style.icon} />
+               <h3 className={style.heading}>ToDo App</h3>
+            </div>
+
             <form onSubmit={createTodo} className={style.form}>
                <input
                   value={input}
