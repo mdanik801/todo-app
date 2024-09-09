@@ -12,6 +12,7 @@ const style = {
 const ToDo = ({ todo, toggleComplete, deleteTodo }) => {
    return (
       <li className={todo.complete ? style.licomplete : style.li}>
+         {/* Chacking git setup */}
          <div className={style.row}>
             <input
                onChange={() => toggleComplete(todo)}
